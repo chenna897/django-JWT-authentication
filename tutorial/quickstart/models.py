@@ -11,4 +11,9 @@ class Employee(models.Model):
     eemail = models.EmailField()  
     econtact = models.CharField(max_length=15)  
     class Meta:  
-        db_table = "employee"  
+        db_table = "employee" 
+
+class Project(models.Model):  
+    projectname = models.CharField(max_length=20)  
+    class Meta:  
+        db_table = "project" 

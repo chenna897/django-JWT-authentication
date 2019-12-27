@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from rest_framework import routers
 from quickstart import views
-from rest_framework.authtoken.views import obtain_auth_token  # <-- Here
-
+# from rest_framework.authtoken.views import obtain_auth_token  # <-- Here
+from rest_framework_simplejwt import views as jwt_views#<--JWT
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'employe', views.EmployeeViewSet)
+router.register(r'project', views.ProjectViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -30,5 +31,11 @@ urlpatterns = [
     url('', include(router.urls)),
     url('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('hello/', views.HelloView.as_view(), name='hello'),
-    url('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # <-- And here
+    # url('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # <-- And here
+
+    url('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),#<--JWT
+    url('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),#<--JWT
+
+    
 ]
+

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',# Add this line
     'quickstart',
 
 ]
@@ -129,15 +130,35 @@ REST_FRAMEWORK = {
 
 
 
+# REST_FRAMEWORK = {
+#      'DEFAULT_AUTHENTICATION_CLASSES': [
+#          'rest_framework.authentication.TokenAuthentication',  # <-- And here
+#      ],
+#  }
+
+
 REST_FRAMEWORK = {
-     'DEFAULT_AUTHENTICATION_CLASSES': [
-         'rest_framework.authentication.TokenAuthentication',  # <-- And here
-     ],
- }
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
 #         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
 #     ],
 # }
+
+# REST_FRAMEWORK = {     # Add this line
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     ),
+# }
+
+# REST_USE_JWT = True
 

@@ -1,13 +1,14 @@
 from django.contrib.auth.models import User, Group
 from .models import *
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, EmployeeSerializer
+from .serializers import UserSerializer, GroupSerializer, EmployeeSerializer, ProjectSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from rest_framework.permissions import IsAuthenticated 
 
 class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     """
     API endpoint that allows users to be viewed or edited.
     """
@@ -16,6 +17,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class GroupViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     """
     API endpoint that allows groups to be viewed or edited.
     """
@@ -23,11 +25,21 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 class EmployeeViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     """
     API endpoint that allows groups to be viewed or edited.
     """
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
 
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)

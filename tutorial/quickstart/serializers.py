@@ -21,7 +21,10 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
         model = Employee
         fields = ['url', 'eid', 'ename','eemail','econtact']
 
-
+class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['url', 'projectname']
 
 # Hi sir,
    
